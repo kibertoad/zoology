@@ -71,10 +71,14 @@ const hasOwnProperty = Object.prototype.hasOwnProperty
  *
  * Array-like values such as `arguments` objects, arrays, buffers, strings, or
  * Similarly, maps and sets are considered empty if they have a `size` of `0`.
+ * Numbers and booleans are never empty
  */
 export function isEmpty(value: any): boolean {
   if (isNil(value)) {
     return true
+  }
+  if (isNumber(value) || isBoolean(value)) {
+    return false
   }
   if (
     isArrayLike(value) &&
@@ -100,14 +104,4 @@ export function isEmpty(value: any): boolean {
     }
   }
   return true
-}
-
-/* ToDO
-export function isBlank(value: any): boolean {
-
-}
- */
-
-export function isArray(value: any): boolean {
-  return Array.isArray(value)
 }
