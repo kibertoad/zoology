@@ -1,7 +1,13 @@
+import { nodeTypes } from './nodeTypes'
+
+const nodeIsTypedArray = nodeTypes && nodeTypes.isTypedArray
 const toString = Object.prototype.toString
 const objectProto = Object.prototype
 
 const MAX_SAFE_INTEGER = 900719925474099
+
+/** Used to match `toStringTag` values of typed arrays. */
+const reTypedTag = /^\[object (?:Float(?:32|64)|(?:Int|Uint)(?:8|16|32)|Uint8Clamped)Array\]$/
 
 export function getTag(value: any) {
   if (value == null) {
@@ -103,3 +109,18 @@ export function isPrototype(value: any) {
 export function isLength(value: any) {
   return typeof value === 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
 }
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @example
+ *
+ * isTypedArray(new Uint8Array)
+ * // => true
+ *
+ * isTypedArray([])
+ * // => false
+ */
+export const isTypedArray = nodeIsTypedArray
+  ? (value: any) => nodeIsTypedArray(value)
+  : (value: any) => isObjectLike(value) && reTypedTag.test(getTag(value))

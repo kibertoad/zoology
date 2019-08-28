@@ -1,4 +1,6 @@
-import { getTag, isArguments, isArrayLike, isObjectLike, isPrototype } from './utils'
+import { getTag, isArguments, isArrayLike, isObjectLike, isPrototype, isTypedArray } from './utils'
+import { nodeTypes } from './nodeTypes'
+const nodeIsDate = nodeTypes && nodeTypes.isDate
 
 export function isString(value: any): boolean {
   const type = typeof value
@@ -12,7 +14,23 @@ export function isString(value: any): boolean {
 }
 
 export function isNumber(value: any): boolean {
-  return typeof value == 'number' || (isObjectLike(value) && getTag(value) == '[object Number]')
+  return typeof value === 'number' || (isObjectLike(value) && getTag(value) === '[object Number]')
+}
+
+export function isFinite(value: any): boolean {
+  return Number.isFinite(value)
+}
+
+export const isDate = nodeIsDate
+  ? (value: any) => nodeIsDate(value)
+  : (value: any) => isObjectLike(value) && getTag(value) == '[object Date]'
+
+export function isBoolean(value: any): boolean {
+  return (
+    value === true ||
+    value === false ||
+    (isObjectLike(value) && getTag(value) == '[object Boolean]')
+  )
 }
 
 /**
@@ -33,10 +51,10 @@ export function isFunction(value: any): boolean {
   // in Safari 9 which returns 'object' for typed arrays and other constructors.
   const tag = getTag(value)
   return (
-    tag == '[object Function]' ||
-    tag == '[object AsyncFunction]' ||
-    tag == '[object GeneratorFunction]' ||
-    tag == '[object Proxy]'
+    tag === '[object Function]' ||
+    tag === '[object AsyncFunction]' ||
+    tag === '[object GeneratorFunction]' ||
+    tag === '[object Proxy]'
   )
 }
 
@@ -53,8 +71,6 @@ const hasOwnProperty = Object.prototype.hasOwnProperty
  *
  * Array-like values such as `arguments` objects, arrays, buffers, strings, or
  * Similarly, maps and sets are considered empty if they have a `size` of `0`.
- *
- * Does not support typed arrays currently
  */
 export function isEmpty(value: any): boolean {
   if (isNil(value)) {
@@ -63,15 +79,16 @@ export function isEmpty(value: any): boolean {
   if (
     isArrayLike(value) &&
     (Array.isArray(value) ||
-      typeof value == 'string' ||
-      typeof value.splice == 'function' ||
+      typeof value === 'string' ||
+      typeof value.splice === 'function' ||
       Buffer.isBuffer(value) ||
+      isTypedArray(value) ||
       isArguments(value))
   ) {
     return !value.length
   }
   const tag = getTag(value)
-  if (tag == '[object Map]' || tag == '[object Set]') {
+  if (tag === '[object Map]' || tag === '[object Set]') {
     return !value.size
   }
   if (isPrototype(value)) {
