@@ -1,4 +1,11 @@
-import { MockTurtle } from './lib/MockTurtle'
-import { ResponseTypescriptExporter } from './lib/ResponseTypescriptExporter'
+import {
+  isArray,
+  isEmpty,
+  isFunction,
+  isNil,
+  isNumber,
+  isObject,
+  isString
+} from './lib/zoology'
 
-export { MockTurtle, ResponseTypescriptExporter }
+export { isArray, isEmpty, isFunction, isNil, isNumber, isObject, isString }
