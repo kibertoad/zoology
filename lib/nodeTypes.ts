@@ -5,14 +5,16 @@ const freeGlobal =
 const freeExports = typeof exports === 'object' && exports !== null && !exports.nodeType && exports
 
 /** Detect free variable `module`. */
-// @ts-ignore
+
 const freeModule =
+  // @ts-ignore
   freeExports && typeof module === 'object' && module !== null && !module.nodeType && module
 
 /** Detect the popular CommonJS extension `module.exports`. */
 const moduleExports = freeModule && freeModule.exports === freeExports
 
 /** Detect free variable `process` from Node.js. */
+// @ts-ignore
 const freeProcess = moduleExports && freeGlobal.process
 
 /** Used to access faster Node.js helpers. */
