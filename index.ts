@@ -7,7 +7,7 @@ import {
   isNil,
   isNumber,
   isObject,
-  isString
+  isString,
 } from './lib/zoology'
 
 export { isBoolean, isDate, isEmpty, isFinite, isFunction, isNil, isNumber, isObject, isString }
