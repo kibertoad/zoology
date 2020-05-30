@@ -7,9 +7,11 @@ const objectProto = Object.prototype
 const MAX_SAFE_INTEGER = 900719925474099
 
 /** Used to match `toStringTag` values of typed arrays. */
+// @ts-ignore
+
 const reTypedTag = /^\[object (?:Float(?:32|64)|(?:Int|Uint)(?:8|16|32)|Uint8Clamped)Array\]$/
 
-export function getTag(value: any) {
+export function getTag(value: any): string {
   if (value == null) {
     return value === undefined ? '[object Undefined]' : '[object Null]'
   }
@@ -34,7 +36,7 @@ export function getTag(value: any) {
  * isObjectLike(null)
  * // => false
  */
-export function isObjectLike(value: any) {
+export function isObjectLike(value: any): boolean {
   return typeof value === 'object' && value != null
 }
 
@@ -49,7 +51,7 @@ export function isObjectLike(value: any) {
  * isArguments([1, 2, 3])
  * // => false
  */
-export function isArguments(value: any) {
+export function isArguments(value: any): boolean {
   return isObjectLike(value) && getTag(value) == '[object Arguments]'
 }
 
@@ -72,14 +74,14 @@ export function isArguments(value: any) {
  * isArrayLike(Function)
  * // => false
  */
-export function isArrayLike(value: any) {
+export function isArrayLike(value: any): boolean {
   return value != null && typeof value != 'function' && isLength(value.length)
 }
 
 /**
  * Checks if `value` is likely a prototype object.
  */
-export function isPrototype(value: any) {
+export function isPrototype(value: any): boolean {
   const Ctor = value && value.constructor
   const proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto
 
@@ -106,7 +108,7 @@ export function isPrototype(value: any) {
  * isLength('3')
  * // => false
  */
-export function isLength(value: any) {
+export function isLength(value: any): boolean {
   return typeof value === 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
 }
 
@@ -122,5 +124,5 @@ export function isLength(value: any) {
  * // => false
  */
 export const isTypedArray = nodeIsTypedArray
-  ? (value: any) => nodeIsTypedArray(value)
-  : (value: any) => isObjectLike(value) && reTypedTag.test(getTag(value))
+  ? (value: any): boolean => nodeIsTypedArray(value)
+  : (value: any): boolean => isObjectLike(value) && reTypedTag.test(getTag(value))
