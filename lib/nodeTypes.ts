@@ -11,6 +11,7 @@ const freeModule =
   freeExports && typeof module === 'object' && module !== null && !module.nodeType && module
 
 /** Detect the popular CommonJS extension `module.exports`. */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const moduleExports = freeModule && freeModule.exports === freeExports
 
 /** Detect free variable `process` from Node.js. */
@@ -18,6 +19,7 @@ const moduleExports = freeModule && freeModule.exports === freeExports
 const freeProcess = moduleExports && freeGlobal.process
 
 /** Used to access faster Node.js helpers. */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const nodeTypes = (() => {
   try {
     /* Detect public `util.types` helpers for Node.js v10+. */
