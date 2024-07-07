@@ -2,12 +2,13 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
-    "target": "es6",
-    "sourceMap": true,
+    "target": "es2018",
+    "sourceMap": false,
     "declaration": true,
     "declarationMap": false,
-    "types": ["node", "jest"],
+    "types": ["node"],
     "strict": true,
+    "skipLibCheck": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -25,6 +26,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "test"
+    "test",
+    "vitest.config.mts"
   ]
 }

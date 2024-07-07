@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isDate } from '..'
+import { isDate } from '../lib/zoology'
 
 describe('zoology', () => {
   describe('isDate', () => {

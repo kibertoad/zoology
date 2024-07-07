@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isFinite as _isFinite } from '..'
+import { _isFinite } from '../lib/zoology'
 
 describe('zoology', () => {
   describe('_isFinite', () => {

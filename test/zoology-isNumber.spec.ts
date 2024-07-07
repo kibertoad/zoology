@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isNumber } from '..'
+import { isNumber } from '../lib/zoology'
 
 describe('zoology', () => {
   describe('isNumber', () => {

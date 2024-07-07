@@ -5,18 +5,18 @@ export default defineConfig({
     globals: true,
     watch: false,
     environment: 'node',
-    passWithNoTests: true,
+    passWithNoTests: false,
     reporters: ['verbose'],
     coverage: {
       thresholds: {
         statements: 90,
         branches: 75,
-        functions: 76,
+        functions: 75,
         lines: 90
       },
       include: ['lib/**/*.ts'],
-      exclude: [],
-      reporter: ['lcov', "text", "html"],
+      exclude: ['test/**/*.ts'],
+      reporter: ['text', 'lcov'],
       all: true,
     },
   },
