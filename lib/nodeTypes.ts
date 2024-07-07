@@ -30,5 +30,5 @@ export const nodeTypes = (() => {
       : /* Legacy process.binding('util') for Node.js earlier than v10. */
         // @ts-ignore
         freeProcess && freeProcess.binding && freeProcess.binding('util')
-  } catch (e) {}
+  } catch (_e) {}
 })()

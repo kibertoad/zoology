@@ -1,7 +1,7 @@
 import { nodeTypes } from './nodeTypes'
 
 const nodeIsTypedArray = nodeTypes && nodeTypes.isTypedArray
-const toString = Object.prototype.toString
+const _toString = Object.prototype.toString
 const objectProto = Object.prototype
 
 const MAX_SAFE_INTEGER = 900719925474099
@@ -15,7 +15,7 @@ export function getTag(value: any): string {
   if (value == null) {
     return value === undefined ? '[object Undefined]' : '[object Null]'
   }
-  return toString.call(value)
+  return _toString.call(value)
 }
 
 /**
