@@ -1,6 +1,10 @@
-import { getTag, isArguments, isArrayLike, isObjectLike, isPrototype, isTypedArray } from './utils'
 import { nodeTypes } from './nodeTypes'
+import { getTag, isArguments, isArrayLike, isObjectLike, isPrototype, isTypedArray } from './utils'
 const nodeIsDate = nodeTypes && nodeTypes.isDate
+
+function _isBuffer(value: unknown) {
+  return typeof Buffer !== 'undefined' && Buffer.isBuffer(value)
+}
 
 export function isString(value: any): boolean {
   const type = typeof value
@@ -17,7 +21,7 @@ export function isNumber(value: any): boolean {
   return typeof value === 'number' || (isObjectLike(value) && getTag(value) === '[object Number]')
 }
 
-export function isFinite(value: any): boolean {
+export function _isFinite(value: any): boolean {
   return Number.isFinite(value)
 }
 
@@ -62,7 +66,7 @@ export function isNil(value: any): boolean {
   return value == null
 }
 
-const hasOwnProperty = Object.prototype.hasOwnProperty
+const _hasOwnProperty = Object.prototype.hasOwnProperty
 /**
  * Checks if `value` is a nil value, empty object, collection, map, or set.
  *
@@ -85,7 +89,7 @@ export function isEmpty(value: any): boolean {
     (Array.isArray(value) ||
       typeof value === 'string' ||
       typeof value.splice === 'function' ||
-      Buffer.isBuffer(value) ||
+      _isBuffer(value) ||
       isTypedArray(value) ||
       isArguments(value))
   ) {
@@ -99,7 +103,7 @@ export function isEmpty(value: any): boolean {
     return !Object.keys(value).length
   }
   for (const key in value) {
-    if (hasOwnProperty.call(value, key)) {
+    if (_hasOwnProperty.call(value, key)) {
       return false
     }
   }

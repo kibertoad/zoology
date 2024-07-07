@@ -1,23 +1,24 @@
-import { isFinite } from '..'
+import { describe, expect, it } from 'vitest'
+import { isFinite as _isFinite } from '..'
 
 describe('zoology', () => {
-  describe('isFinite', () => {
+  describe('_isFinite', () => {
     it('positive cases', () => {
-      expect(isFinite(-1)).toEqual(true)
-      expect(isFinite(0)).toEqual(true)
-      expect(isFinite(1)).toEqual(true)
-      expect(isFinite(1.5)).toEqual(true)
+      expect(_isFinite(-1)).toEqual(true)
+      expect(_isFinite(0)).toEqual(true)
+      expect(_isFinite(1)).toEqual(true)
+      expect(_isFinite(1.5)).toEqual(true)
     })
 
     it('negative cases', () => {
-      expect(isFinite('')).toEqual(false)
-      expect(isFinite('a')).toEqual(false)
-      expect(isFinite([])).toEqual(false)
-      expect(isFinite({})).toEqual(false)
-      expect(isFinite(new Number(1))).toEqual(false)
-      expect(isFinite(/ab+c/)).toEqual(false)
-      expect(isFinite(null)).toEqual(false)
-      expect(isFinite(undefined)).toEqual(false)
+      expect(_isFinite('')).toEqual(false)
+      expect(_isFinite('a')).toEqual(false)
+      expect(_isFinite([])).toEqual(false)
+      expect(_isFinite({})).toEqual(false)
+      expect(_isFinite(new Number(1))).toEqual(false)
+      expect(_isFinite(/ab+c/)).toEqual(false)
+      expect(_isFinite(null)).toEqual(false)
+      expect(_isFinite(undefined)).toEqual(false)
     })
   })
 })

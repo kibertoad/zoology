@@ -1,8 +1,8 @@
 import {
+  _isFinite,
   isBoolean,
   isDate,
   isEmpty,
-  isFinite,
   isFunction,
   isNil,
   isNumber,
@@ -10,4 +10,14 @@ import {
   isString,
 } from './lib/zoology'
 
-export { isBoolean, isDate, isEmpty, isFinite, isFunction, isNil, isNumber, isObject, isString }
+export {
+  isBoolean,
+  isDate,
+  isEmpty,
+  _isFinite as isFinite,
+  isFunction,
+  isNil,
+  isNumber,
+  isObject,
+  isString,
+}
