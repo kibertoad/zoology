@@ -1,5 +1,5 @@
-import {
-  _isFinite,
+export {
+  _isFinite as isFinite,
   isBoolean,
   isDate,
   isEmpty,
@@ -9,15 +9,3 @@ import {
   isObject,
   isString,
 } from './lib/zoology'
-
-export {
-  isBoolean,
-  isDate,
-  isEmpty,
-  _isFinite as isFinite,
-  isFunction,
-  isNil,
-  isNumber,
-  isObject,
-  isString,
-}

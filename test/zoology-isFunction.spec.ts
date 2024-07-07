@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isFunction } from '..'
+import { isFunction } from '../lib/zoology'
 
 describe('zoology', () => {
   describe('isFunction', () => {

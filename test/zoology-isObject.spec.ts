@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isObject } from '..'
+import { isObject } from '../lib/zoology'
 
 describe('zoology', () => {
   describe('isBoolean', () => {
