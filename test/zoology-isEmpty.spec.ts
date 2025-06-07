@@ -11,6 +11,7 @@ describe('zoology', () => {
       expect(isEmpty('')).toEqual(true)
       expect(isEmpty(() => {})).toEqual(true)
       expect(isEmpty(/ab+c/)).toEqual(true)
+      expect(isEmpty(Buffer.alloc(0))).toEqual(true)
     })
 
     it('negative cases', () => {
@@ -22,6 +23,7 @@ describe('zoology', () => {
       expect(isEmpty('a')).toEqual(false)
       expect(isEmpty(true)).toEqual(false)
       expect(isEmpty(false)).toEqual(false)
+      expect(isEmpty(Buffer.alloc(1))).toEqual(false)
     })
   })
 })

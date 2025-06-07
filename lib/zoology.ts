@@ -2,8 +2,13 @@ import { nodeTypes } from './nodeTypes'
 import { getTag, isArguments, isArrayLike, isObjectLike, isPrototype, isTypedArray } from './utils'
 const nodeIsDate = nodeTypes && nodeTypes.isDate
 
-function _isBuffer(value: unknown) {
-  return typeof Buffer !== 'undefined' && Buffer.isBuffer(value)
+function _isBuffer(value: unknown): boolean {
+  return (
+    typeof globalThis !== 'undefined' &&
+    typeof (globalThis as any).Buffer !== 'undefined' &&
+    typeof (globalThis as any).Buffer.isBuffer === 'function' &&
+    (globalThis as any).Buffer.isBuffer(value)
+  )
 }
 
 export function isString(value: any): boolean {
