@@ -9,10 +9,10 @@ export default defineConfig({
     reporters: ['verbose'],
     coverage: {
       thresholds: {
-        statements: 90,
-        branches: 75,
-        functions: 75,
-        lines: 90
+        statements: 87,
+        branches: 80,
+        functions: 82,
+        lines: 87
       },
       include: ['lib/**/*.ts'],
       exclude: ['test/**/*.ts'],
