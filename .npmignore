@@ -7,3 +7,4 @@ test/
 coverage/
 jest.config.json
 package-lock.json
+pnpm-lock.yaml

@@ -10,13 +10,14 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build": "tsc",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "lint": "biome check . && tsc --project tsconfig.lint.json --noEmit",
     "lint:fix": "biome check --write .",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {},
   "devDependencies": {
@@ -26,6 +27,9 @@
     "@vitest/coverage-v8": "^2.1.9",
     "typescript": "^5.8.3",
     "vitest": "^2.1.9"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
   },
   "homepage": "http://github.com/kibertoad/zoology",
   "repository": {
