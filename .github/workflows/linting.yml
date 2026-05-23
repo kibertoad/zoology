@@ -6,10 +6,14 @@ on:
     branches:
       - master
 
+permissions: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     name: linting
+    permissions:
+      contents: read
 
     strategy:
       matrix:
@@ -17,18 +21,23 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 1
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
 
       - name: Setup Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           always-auth: false
           node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
-      - name: Run npm install
-        run: npm install
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Run lint
-        run: npm run lint
+        run: pnpm run lint
