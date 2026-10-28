@@ -25,7 +25,7 @@
     "@kibertoad/biome-config": "^2.0.0",
     "@types/node": "^22.15.30",
     "@vitest/coverage-v8": "^2.1.9",
-    "typescript": "^5.8.3",
+    "typescript": "^7.0.2",
     "vitest": "^3.2.6"
   },
   "homepage": "http://github.com/kibertoad/zoology",
